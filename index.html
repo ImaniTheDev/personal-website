@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- External CSS (fallback with onerror) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/your-css-framework.css" onerror="this.onerror=null;this.href='styles/local-fallback.css';">
+<!-- Your main CSS -->
+<link rel="stylesheet" href="style.css">
+
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Bae Agenda</title>
@@ -8,11 +14,12 @@
 </head>
 <body>
   <!-- Boot-up screen -->
-  <div id="boot-screen">
-    Booting up The Bae Agenda...<br>
-    Loading files...<br>
-    Starting interface...
-  </div>
+ <div id="boot-screen">
+  Booting up The Bae Agenda...<br>
+  <span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
+</div>
+
+
 
   <!-- Main content: folder UI placeholder -->
   <div id="main-content">
@@ -30,6 +37,11 @@
     <!-- Folders will go here -->
   </div>
 
+  <script src="scripts/main.js" defer>
+        // Simulate loading process
+
+
+  </script>
   <script>
     // Simulate boot-up transition
     setTimeout(() => {

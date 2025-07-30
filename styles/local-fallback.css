@@ -1,0 +1,11 @@
+    /* Add your fallback CSS rules here */
+    
+    body {
+        background: #f9f9f9;
+        color: #222;
+        font-family: Arial, sans-serif;
+    }
+    
+    header h1 {
+        color: #3366cc;
+    }
