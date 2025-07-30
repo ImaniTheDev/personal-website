@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Imani Crumble | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <h1>Imani Crumble</h1>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I'm a multidisciplinary creative and IT specialist with a background in software development, DJing, and community tech. I believe in using technology and culture to create joy, equity, and efficiency in the world.</p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project">
+      <h3>Music Organizer Tool</h3>
+      <p>A Python-based tool that automatically sorts downloaded music into genre folders based on metadata and tagging.</p>
+    </div>
+    <div class="project">
+      <h3>DJ Request App (In Progress)</h3>
+      <p>Building a web app that allows audiences to request songs during live DJ sets, organized by mood and genre.</p>
+    </div>
+    <div class="project">
+      <h3>Quality Systems Dashboard</h3>
+      <p>A dashboard prototype using Power BI to visualize system uptime, issue resolution time, and process improvement areas.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: imanicrumble@gmail.com</p>
+    <p>GitHub: <a href="https://github.com/ImaniTheDev">@YOUR_USERNAME</a></p>
+    <p>Location: Indianapolis, IN (Open to Remote or Relocation)</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Imani Crumble. All rights reserved.</p>
+  </footer>
+</body>
+</html>

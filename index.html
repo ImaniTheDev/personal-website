@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Bae Agenda</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Boot-up screen -->
+  <div id="boot-screen">
+    Booting up The Bae Agenda...<br>
+    Loading files...<br>
+    Starting interface...
+  </div>
+
+  <!-- Main content: folder UI placeholder -->
+  <div id="main-content">
+  <h1>Welcome to The Bae Agenda</h1>
+  <p>Click a folder to explore.</p>
+
+  <div class="folder-container">
+    <div class="folder">About</div>
+    <div class="folder">Projects</div>
+    <div class="folder">Contact</div>
+    <!-- Add more folders as needed -->
+  </div>
+</div>
+
+    <!-- Folders will go here -->
+  </div>
+
+  <script>
+    // Simulate boot-up transition
+    setTimeout(() => {
+      document.getElementById('boot-screen').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+    }, 3000); // 3-second boot time
+  </script>
+</body>
+</html>
