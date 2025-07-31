@@ -62,6 +62,117 @@ body {
   flex-shrink: 0;
 }
 
+.speaker-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  margin: 2rem auto;
+  position: relative;
+}
+
+.speaker-img {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+  animation: thump 1.2s infinite ease-in-out;
+}
+
+/* Container for all speakers */
+.speaker-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem auto;
+}
+
+/* Base speaker style */
+.speaker-box {
+  border: 2px solid cyan;
+  border-radius: 50%;
+  overflow: hidden;
+  animation: thump 1.5s infinite ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.real-speaker {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.speaker-label {
+  position: absolute;
+  bottom: -2rem;
+  text-align: center;
+  font-family: monospace;
+  font-size: 1rem;
+  color: cyan;
+  width: 100%;
+}
+
+
+.speaker-dj         { width: 300px; height: 300px; top: 0px;    position: relative; }
+.speaker-about      { width: 160px; height: 160px; top: 30px;   position: relative; }
+.speaker-booking    { width: 180px; height: 180px; top: -20px;  position: relative; }
+.speaker-contact    { width: 240px; height: 240px; top: 15px;   position: relative; }
+.speaker-projects   { width: 140px; height: 140px; top: -10px;  position: relative; }
+.speaker-gig-tracker{ width: 130px; height: 130px; top: 40px;   position: relative; }
+
+
+/* Individual speaker sizes */
+.speaker-dj {
+  width: 300px;
+  height: 300px;
+}
+
+.speaker-about {
+  width: 160px;
+  height: 160px;
+}
+
+.speaker-booking {
+  width: 180px;
+  height: 180px;
+}
+
+.speaker-contact {
+  width: 240px;
+  height: 240px;
+}
+
+.speaker-projects {
+  width: 140px;
+  height: 140px;
+}
+
+.speaker-gig-tracker {
+  width: 130px;
+  height: 130px;
+}
+
+/* Optional: Thump animation */
+
+@keyframes thump {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.03); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
 .woofer, .tweeter {
   background: radial-gradient(circle at 30% 30%, #222, #000);
   border: 3px solid var(--accent);
