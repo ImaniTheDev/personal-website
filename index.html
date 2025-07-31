@@ -113,9 +113,32 @@
       animation: thump 1.2s infinite ease-in-out;
     }
 
-    .speaker-tweeter { width: 120px; height: 120px; }
-    .speaker-mid { width: 200px; height: 200px; }
-    .speaker-woofer { width: 300px; height: 300px; }
+    .speaker-about {
+      transform: translateY(100px) translateX(40px);
+      animation-delay: 0.2s;
+    }
+
+    .speaker-gig-tracker {
+      transform: translateY(100px) translateX(-40px);
+      animation-delay: 0.4s;
+    }
+
+    .speaker-tweeter {
+      width: 120px;
+      height: 120px;
+      animation-delay: 0.1s;
+    }
+
+    .speaker-mid {
+      width: 200px;
+      height: 200px;
+    }
+
+    .speaker-woofer {
+      width: 300px;
+      height: 300px;
+      animation-delay: 0.3s;
+    }
 
     @keyframes thump {
       0%, 100% { transform: scale(1); }
@@ -176,14 +199,6 @@
       opacity: 0.6;
     }
 
-    .speaker-about {
-      transform: translateY(100px) translateX(40px);
-    }
-
-    .speaker-gig-tracker {
-      transform: translateY(100px) translateX(-40px);
-    }
-
     .logo {
       position: absolute;
       top: 20px;
@@ -201,10 +216,10 @@
     <h1>The Bae Agenda</h1>
     <p>Dig into the crates. One panel at a time.</p>
     <div class="control-panel">
-      <h2>The Bae Agenda</h2>
-      <div class="knob"></div>
-      <div class="knob"></div>
-      <div class="knob"></div>
+      <h2>EQ Control</h2>
+      <div class="knob" id="HIGh">High</div>
+      <div class="knob" id="HIGH">Mid</div>
+      <div class="knob" id="HIGH">Low</div>
     </div>
   </header>
 
