@@ -1,53 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- External CSS (fallback with onerror) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/your-css-framework.css" onerror="this.onerror=null;this.href='styles/local-fallback.css';">
-<!-- Your main CSS -->
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Bae Agenda – Speaker Grid</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="main.js" defer></script>
+  <style>
+    :root {
+      --accent: #00fff2;
+      --bg: #111;
+      --text: #fff;
+    }
 
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Courier New', monospace;
+      background-color: var(--bg);
+      color: var(--text);
+      background-image: url('assets/images/outside.jpg');
+      background-size: cover;
+      background-position: center;
+      backdrop-filter: blur(5px);
+      overflow-x: hidden;
+    }
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Bae Agenda</title>
-  <link rel="stylesheet" href="style.css">
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: var(--bg);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      z-index: 1000;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 20px 20px;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .control-panel {
+      margin-top: 20px;
+      padding: 20px;
+      width: 220px;
+      background-color: #222;
+      border: 2px solid var(--accent);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: var(--text);
+      font-size: 0.75rem;
+      z-index: 2;
+      box-shadow: 0 0 15px var(--accent);
+    }
+
+    .control-panel h2 {
+      font-size: 0.9rem;
+      margin: 0 0 10px;
+    }
+
+    .knob {
+      width: 16px;
+      height: 16px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      margin: 5px;
+    }
+
+    .knob.active {
+      transform: scale(1.5);
+      background-color: lime;
+    }
+
+    .speaker-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 80px;
+      padding: 40px 20px;
+      position: relative;
+    }
+
+    .speaker-box {
+      border: 3px solid var(--accent);
+      border-radius: 50%;
+      padding: 30px;
+      background-color: rgba(0, 0, 0, 0.6);
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: thump 1.2s infinite ease-in-out;
+    }
+
+    .speaker-tweeter { width: 120px; height: 120px; }
+    .speaker-mid { width: 200px; height: 200px; }
+    .speaker-woofer { width: 300px; height: 300px; }
+
+    @keyframes thump {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .speaker-button {
+      width: 90%;
+      height: 90%;
+      background: linear-gradient(145deg, #1d1d1d, #2a2a2a);
+      border-radius: 50%;
+      box-shadow: inset -2px -2px 5px #000, inset 2px 2px 5px #333, 0 0 10px var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: white;
+      text-align: center;
+    }
+
+    .speaker-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--accent);
+    }
+
+    .wire {
+      position: absolute;
+      width: 2px;
+      height: 80px;
+      background-color: var(--accent);
+      animation: pulse 1.5s infinite alternate;
+      z-index: 0;
+    }
+
+    @keyframes pulse {
+      from { opacity: 0.3; }
+      to { opacity: 1; }
+    }
+
+    .content {
+      display: none;
+      padding: 40px 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .content.active {
+      display: block;
+    }
+
+    .site-footer {
+      text-align: center;
+      padding: 40px 10px;
+      font-size: 0.85rem;
+      opacity: 0.6;
+    }
+
+    .speaker-about {
+      transform: translateY(100px) translateX(40px);
+    }
+
+    .speaker-gig-tracker {
+      transform: translateY(100px) translateX(-40px);
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 60px;
+      height: auto;
+    }
+  </style>
 </head>
 <body>
-  <!-- Boot-up screen -->
- <div id="boot-screen">
-  Booting up The Bae Agenda...<br>
-  <span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
-</div>
+  <div class="loading-screen" id="loading">Loading the crates...</div>
 
+  <header class="hero">
+    <img src="assets/images/profile pic.JPG" alt="Logo" class="logo" />
+    <h1>The Bae Agenda</h1>
+    <p>Dig into the crates. One panel at a time.</p>
+    <div class="control-panel">
+      <h2>The Bae Agenda</h2>
+      <div class="knob"></div>
+      <div class="knob"></div>
+      <div class="knob"></div>
+    </div>
+  </header>
 
+  <section class="speaker-container">
+    <div class="speaker-box speaker-mid speaker-about">
+      <div class="speaker-button" data-target="about">About</div>
+    </div>
+    <div class="speaker-box speaker-mid">
+      <div class="speaker-button" data-target="booking">Booking</div>
+    </div>
+    <div class="speaker-box speaker-woofer">
+      <div class="speaker-button" data-target="contact">Contact</div>
+    </div>
+    <div class="speaker-box speaker-tweeter">
+      <div class="speaker-button" data-target="projects">Projects</div>
+    </div>
+    <div class="speaker-box speaker-tweeter speaker-gig-tracker">
+      <div class="speaker-button" data-target="gig-tracker">Gig Tracker</div>
+    </div>
+    <div class="speaker-box speaker-woofer">
+      <div class="speaker-button" data-target="dj-toolkit">DJ Toolkit</div>
+    </div>
+  </section>
 
-  <!-- Main content: folder UI placeholder -->
-  <div id="main-content">
-  <h1>Welcome to The Bae Agenda</h1>
-  <p>Click a folder to explore.</p>
+  <section class="content" id="about">About content goes here.</section>
+  <section class="content" id="projects">Projects content goes here.</section>
+  <section class="content" id="gig-tracker">Gig tracker coming soon.</section>
+  <section class="content" id="dj-toolkit">Toolkit coming soon.</section>
+  <section class="content" id="booking">Booking form coming soon.</section>
+  <section class="content" id="contact">Contact content goes here.</section>
 
-  <div class="folder-container">
-    <div class="folder">About</div>
-    <div class="folder">Projects</div>
-    <div class="folder">Contact</div>
-    <!-- Add more folders as needed -->
-  </div>
-</div>
+  <footer class="site-footer">
+    <p>Liner notes coming soon · Built by Imani</p>
+  </footer>
 
-    <!-- Folders will go here -->
-  </div>
-
-  <script src="scripts/main.js" defer>
-        // Simulate loading process
-
-
-  </script>
   <script>
-    // Simulate boot-up transition
-    setTimeout(() => {
-      document.getElementById('boot-screen').style.display = 'none';
-      document.getElementById('main-content').style.display = 'block';
-    }, 3000); // 3-second boot time
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loading').style.display = 'none';
+      }, 2000);
+    });
+
+    document.querySelectorAll('.speaker-button').forEach(button => {
+      button.addEventListener('click', () => {
+        const target = button.getAttribute('data-target');
+        document.querySelectorAll('.content').forEach(section => {
+          section.classList.remove('active');
+        });
+        const el = document.getElementById(target);
+        if (el) el.classList.add('active');
+        el?.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    document.querySelectorAll('.knob').forEach(knob => {
+      knob.addEventListener('click', () => {
+        knob.classList.toggle('active');
+      });
+    });
   </script>
 </body>
 </html>

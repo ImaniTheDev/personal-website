@@ -1,107 +1,129 @@
-/* Add to top of your main CSS file */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-/* === BOOT SCREEN STYLES === */
-/* General Reset and Base Styling */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  --accent: #00fff2;
+  --bg: #111;
+  --text: #fff;
 }
 
 body {
-  background-color: #000;
-  color: #0f0;
-  font-family: 'Courier New', Courier, monospace;
-  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Courier New', monospace;
+  background-color: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.scroll-cue {
+  font-size: 1.5rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+.speaker-row {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 60px;
+  padding: 40px;
+  position: relative;
 }
 
-/* Mobile-first styles (default) */
-body {
-  font-size: 16px;
-  padding: 10px;
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  background-color: #222;
+  border: 3px solid var(--accent);
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px var(--accent);
+  flex-shrink: 0;
 }
 
-/* Desktop styles */
-@media screen and (min-width: 768px) {
-  .desktop-only { display: block; }
-  .mobile-only { display: none; }
+.woofer, .tweeter {
+  background: radial-gradient(circle at 30% 30%, #222, #000);
+  border: 3px solid var(--accent);
+  box-shadow: inset 0 0 10px #000;
+  position: absolute;
+  border-radius: 50%;
 }
 
-.dot {
-  animation: blink 1.5s infinite;
-  opacity: 0;
+.woofer {
+  width: 100px;
+  height: 100px;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.dot:nth-child(1) { animation-delay: 0s; }
-.dot:nth-child(2) { animation-delay: 0.3s; }
-.dot:nth-child(3) { animation-delay: 0.6s; }
-
-@keyframes blink {
-  50% { opacity: 1; }
+.tweeter {
+  width: 40px;
+  height: 40px;
+  top: 20px;
 }
 
-
-.card, .container {
-  border-radius: 1rem;
+.tweeter.left {
+  left: 20px;
 }
 
-
-/* Boot Screen Styling */
-#boot-screen {
-  font-size: 1.5rem;
-  white-space: pre-line;
-  animation: blink 1s steps(1) infinite;
+.tweeter.right {
+  right: 20px;
 }
 
-/* Blinking dots */
-@keyframes blink {
-  50% {
-    opacity: 0;
+.speaker-button {
+  background-color: var(--accent);
+  color: #111;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.content {
+  display: none;
+  padding: 40px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.content.active {
+  display: block;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 40px 10px;
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+@media print {
+  .vinyl-scroll,
+  .hero,
+  .site-footer {
+    display: none;
   }
 }
 
-/* Folder UI placeholder */
-#main-content {
-  display: none;
-  background-color: #121212;
-  width: 100%;
-  height: 100%;
-  padding: 2rem;
-  color: #fff;
-}
-
-/* Folder container and folder styles */
-.folder-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding-top: 2rem;
-  justify-content: center;
-}
-
-.folder {
-  width: 120px;
-  height: 100px;
-  background-color: #333;
-  border: 2px solid #555;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: monospace;
-  cursor: pointer;
-  transition: transform 0.2s, background-color 0.3s;
-  box-shadow: 0 0 10px #0ff2;
-}
-
-.folder:hover {
-  transform: scale(1.1);
-  background-color: #444;
-  box-shadow: 0 0 20px #0ff;
-}
